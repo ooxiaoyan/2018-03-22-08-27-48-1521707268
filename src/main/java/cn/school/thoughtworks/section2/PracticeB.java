@@ -8,7 +8,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class PracticeB {
-    Map<String, Integer> countSameElements(List<String> collection1) {
+    public Map<String, Integer> countSameElements(List<String> collection1) {
         List<String> listSingle = new ArrayList<>(), listMultiple = new ArrayList<>();
         for (String s : collection1) {
             if (s.length() == 1) {
