@@ -28,7 +28,17 @@ public class PracticeB {
 
         for (String s : listMultiple) {
             String[] string = s.split("-");
-            result.put(string[0],Integer.valueOf(string[1]));
+            boolean isExist = false;
+            for (Map.Entry<String, Integer> entry : result.entrySet()) {
+                if (string[0].equals(entry.getKey())) {
+                    isExist = true;
+                    int value = entry.getValue() + Integer.valueOf(string[1]);
+                    result.put(entry.getKey(), value);
+                }
+            }
+            if (!isExist) {
+                result.put(string[0],Integer.valueOf(string[1]));
+            }
         }
 
         return result;
