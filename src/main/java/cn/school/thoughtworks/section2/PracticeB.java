@@ -1,12 +1,36 @@
 package cn.school.thoughtworks.section2;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class PracticeB {
     Map<String, Integer> countSameElements(List<String> collection1) {
-        //实现练习要求，并改写该行代码。
+        List<String> listSingle = new ArrayList<>(), listMultiple = new ArrayList<>();
+        for (String s : collection1) {
+            if (s.length() == 1) {
+                listSingle.add(s);
+            } else {
+                listMultiple.add(s);
+            }
+        }
 
-        return null;
+        Map<String, Long> map = listSingle.stream()
+                .collect(Collectors.groupingBy(Function.identity(),Collectors.counting()));
+        Map<String,Integer> result = new HashMap<>();
+        for (Map.Entry<String, Long> entry : map.entrySet()) {
+            Integer value = Math.toIntExact(entry.getValue());
+            result.put(entry.getKey(), value);
+        }
+
+        for (String s : listMultiple) {
+            String[] string = s.split("-");
+            result.put(string[0],Integer.valueOf(string[1]));
+        }
+
+        return result;
     }
 }
